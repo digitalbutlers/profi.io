@@ -1,0 +1,24 @@
+{
+  "name": "profi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digitalbutlers/profi.io.git"
+  },
+  "author": "digitalbutlers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/digitalbutlers/profi.io/issues"
+  },
+  "homepage": "https://github.com/digitalbutlers/profi.io#readme",
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4"
+  }
+}
