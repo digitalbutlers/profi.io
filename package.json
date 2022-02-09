@@ -20,5 +20,8 @@
     "eslint": "^8.8.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4"
+  },
+  "dependencies": {
+    "kis-tabs": "^1.0.1"
   }
 }
