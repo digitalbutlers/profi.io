@@ -84,7 +84,6 @@ $(document).ready(() => {
 		e.parentNode.insertBefore(t, e);
 	}());
 
-	// kirillsakun 18.11.2021
 	(function initIntercomButtons() {
 		const attr = 'data-intercom-message';
 		const buttons = document.querySelectorAll(`[${attr}]`);
@@ -93,6 +92,23 @@ $(document).ready(() => {
 			button.addEventListener('click', (event) => {
 				event.preventDefault();
 				Intercom('showNewMessage', button.getAttribute(attr));
+			});
+		});
+	}());
+
+	function playAudio(name) {
+		const audio = new Audio();
+		audio.src = `https://digitalbutlers.me/any_scripts/profi/audio/${name}.mp3`;
+		audio.autoplay = true;
+		audio.addEventListener('ended', () => {
+			audio.remove();
+		});
+	}
+
+	(function initSoundListeners() {
+		document.querySelectorAll('[data-sound]').forEach((el) => {
+			el.addEventListener('click', () => {
+				playAudio(el.dataset.sound);
 			});
 		});
 	}());
