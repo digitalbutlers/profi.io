@@ -2,52 +2,67 @@
 
 
 // eslint-disable-next-line no-unused-vars
-function initSocialMediaButtons() {
-	$('.back-link-block').click(() => {
-		window.history.back();
-	});
-	$('.social-share-btn').click(() => {
-		const curURL = encodeURIComponent(document.URL);
-		const curTitle = encodeURIComponent($('.h1.case-study-h1').text());
-		const imgURL = encodeURI($('.post-body img').attr('src'));
-		let openURL = curURL;
-		const theTitle = encodeURIComponent('') || curTitle;
 
-		if ($(this).hasClass('fb')) {
-			openURL = `https://www.facebook.com/sharer.php?s=100&u=${
-				curURL
-			}&p[title]=${
-				curTitle
-			}&p[summary]=${
-				theTitle
-			}&p[images][0]=${
-				imgURL}`;
+$('.back-link-block').click(() => {
+	window.history.back();
+});
+
+
+(function shareButtonsInit() {
+	const shareButtons = document.querySelectorAll('a[data-share]');
+
+	const title = document.querySelector('h1').textContent;
+	const url = window.location.href;
+
+	for (let i = 0; i < shareButtons.length; i += 1) {
+		const button = shareButtons[i];
+		const type = button.parentElement.querySelector('[data-role="share-type"]').textContent;
+
+
+		const strings = {
+			twitter: {
+				default: `?url=${url}&text=${title}`,
+				'press-release': `?text=@Profi_io in the press again: ${url}`,
+				blog: `?text=Check up this awesome content: ${title} — ${url}`,
+			},
+		};
+
+
+		switch (button.dataset.share) {
+		case 'facebook': {
+			button.href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+			break;
 		}
-		if ($(this).hasClass('lnk')) {
-			openURL = `https://www.linkedin.com/shareArticle?mini=true&url=${
-				curURL
-			}&title=${
-				curTitle}`;
+		case 'twitter': {
+			button.href = `https://twitter.com/intent/tweet${strings.twitter[type]}`;
+			break;
 		}
-		if ($(this).hasClass('twitter')) {
-			openURL = `http://twitter.com/share?text=${theTitle}&url=${curURL}`;
+		case 'linkedin': {
+			button.href = `https://www.linkedin.com/sharing/share-offsite/
+				?url=${url}
+				&title=${title}`;
+			break;
 		}
-		// for copy current URL
-		if ($(this).hasClass('copy-link')) {
-			const popup = document.querySelector('.popup_link-save');
-			navigator.clipboard.writeText(window.location.href);
-			popup.classList.add('active');
-			setTimeout(() => {
-				popup.classList.remove('active');
-			}, 1000);
-			return false;
+		case 'copy-link': {
+			button.addEventListener('click', () => {
+				navigator.clipboard.writeText(url)
+					.then(() => {
+						button.classList.add('js--copied');
+						setTimeout(() => {
+							button.classList.remove('js--copied');
+						}, 2000);
+					})
+					.catch((e) => {
+						// eslint-disable-next-line no-console
+						console.error(e);
+					});
+			});
+			break;
 		}
-		window.open(
-			openURL,
-			curTitle,
-			'toolbar=0, status=0, width=640, height=640',
-		);
-		return false;
-	});
-}
+		default: {
+			break;
+		}
+		}
+	}
+}());
 
