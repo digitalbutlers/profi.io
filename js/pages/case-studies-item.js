@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 // eslint-disable-next-line no-undef
 	fillNav();
-	// eslint-disable-next-line no-undef
-	initSocialMediaButtons();
 
 	if (document.body.clientWidth < 992) {
 		const tabNav = document.querySelector('.table-of-content-block');

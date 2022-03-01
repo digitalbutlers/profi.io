@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 	// eslint-disable-next-line no-undef
 	fillNav();
-	// eslint-disable-next-line no-undef
-	initSocialMediaButtons();
 
 	const elemToObserve = document.querySelector('.case-table-of-content');
 
