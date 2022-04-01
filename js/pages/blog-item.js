@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		subtree: true,
 	});
 
-	if (document.body.clientWidth < 992) {
+	if (document.body.clientWidth < 992 && document.querySelectorAll('.case-study-rich-text.w-richtext h2, .case-study-rich-text.w-richtext h3').length) {
 		const tabNav = document.querySelector('.table-of-content-block');
 		document
 			.querySelector('.post-body')
