@@ -38,3 +38,11 @@ const validateConfirmEmail = () => {
 };
 
 validateConfirmEmail();
+
+const setTimerDatetime = () => {
+	const timerElement = document.querySelector('.timer');
+	const datetime = document.querySelector('[data-role="pt-time"]').textContent;
+
+	timerElement.setAttribute('data-timer-date', datetime);
+};
+setTimerDatetime();
