@@ -1,14 +1,12 @@
-/* eslint no-undef: 0 */
+(function initBackLinks() {
+	const backLinks = document.querySelectorAll('.back-link-block, [data-action="history-back"]');
 
+	backLinks.forEach((link) => {
+		link.addEventListener('click', window.history.back);
+	});
+}());
 
-// eslint-disable-next-line no-unused-vars
-
-$('.back-link-block').click(() => {
-	window.history.back();
-});
-
-
-(function shareButtonsInit() {
+(function initShareButtons() {
 	const shareButtons = document.querySelectorAll('a[data-share]');
 
 	const title = document.querySelector('h1').textContent;
